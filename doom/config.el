@@ -21,8 +21,9 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "JetBrains Mono" :size 30 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 36))
+(setq doom-font
+      (font-spec :family "Fira Code" :size 30 :weight 'semi-light :ligatures t)
+      doom-variable-pitch-font (font-spec :family "Fira Code" :size 36))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -32,7 +33,9 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-tokyo-night)
+(setq doom-themes-enable-bold t)
+(setq doom-themes-enable-italic t)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -40,7 +43,11 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/pkm/org/")
+(setq org-directory "~/GitHub/pkm/org/")
+
+;; doom-modeline
+(setq doom-modeline-major-mode-icon t) ; show an icon for the major mode
+(setq doom-modeline-buffer-encoding t) ; show encoding type
 
 ;; pdf viewer
 (setq auto-mode-alist (rassq-delete-all 'doc-view-mode auto-mode-alist))
