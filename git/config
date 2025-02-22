@@ -1,0 +1,7 @@
+[user]
+	email = yongwang.ttu@gmail.com
+	name = windstriver
+[credential]
+	helper = store
+[color]
+	ui = auto
