@@ -24,6 +24,7 @@
 (setq doom-font
       (font-spec :family "Fira Code" :size 30 :weight 'semi-light :ligatures t)
       doom-variable-pitch-font (font-spec :family "Fira Code" :size 36))
+
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to

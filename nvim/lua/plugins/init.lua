@@ -20,6 +20,7 @@ return {
   			"vim", "lua", "vimdoc",
         "html", "css", "markdown",
         "python", "typescript", "javascript",
+        "rust"
   		},
   	},
   },
