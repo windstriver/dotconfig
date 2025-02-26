@@ -5,18 +5,31 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-
 # PS1='[\u@\h \W]\$ '
 PS1="\[\e[31m\][\[\e[m\]\[\e[38;5;172m\]\u\[\e[m\]@\[\e[38;5;153m\]\h\[\e[m\] \[\e[38;5;214m\]\W\[\e[m\]\[\e[31m\]]\[\e[m\]\\$ "
  
-alias vi=vim
+# Alias
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias nv='nvim'
 
+# PATH env
 . "$HOME/.local/bin/env"
 
 # Doom Emacs
 export PATH=~/.config/emacs/bin:$PATH
+
+# Yazi
+export EDITOR='emacsclient'
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 # CUDA
 export PATH=/opt/cuda/bin:$PATH

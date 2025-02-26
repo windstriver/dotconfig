@@ -22,9 +22,10 @@
 ;; accept. For example:
 ;;
 (setq doom-font
-      (font-spec :family "Fira Code" :size 30 :weight 'semi-light :ligatures t)
-      doom-variable-pitch-font (font-spec :family "Fira Code" :size 36))
+      (font-spec :family "Iosevka Nerd Font Mono" :size 38 :weight 'semi-light :ligatures t)
+      doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font Mono" :size 50))
 
+(custom-set-faces '(font-lock-comment-face ((t (:slant italic)))))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -41,10 +42,18 @@
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
+;; Disable the title bar in GUI mode (works with most window managers)
+(when (display-graphic-p)
+  (setq frame-title-format nil)
+  (set-frame-parameter nil 'undecorated t))
+;; Open Emacs in fullscreen by default
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/GitHub/pkm/org/")
+;;
+(setq pkm-directory "~/GitHub/pkm")
+(setq org-directory (expand-file-name "org" pkm-directory))
 
 ;; doom-modeline
 (setq doom-modeline-major-mode-icon t) ; show an icon for the major mode
@@ -93,3 +102,32 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; Denote
+(use-package! denote
+  :config
+  (setq denote-directory (expand-file-name "denote" pkm-directory))
+  (setq denote-known-keywords '("emacs" "ai"))
+  (setq denote-file-type 'org)
+  (setq denote-prompts '(title keywords))
+
+  (add-hook 'dired-mode-hook #'denote-dired-mode)
+
+  (map! :leader
+        :desc "New denote note" "n n" #'denote
+        :desc "Find denote note" "n f" #'denote-find
+        :desc "Rename denote note" "n r" #'denote-rename-file))
+
+
+;; citar
+(use-package citar
+  :no-require
+  :custom
+  (org-cite-global-bibliography '("~/GitHub/pkm/reference/main.bib"))
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar)
+  (citar-bibliography org-cite-global-bibliography)
+  ;; optional: org-cite-insert is also bound to C-c C-x C-@
+  :bind
+  (:map org-mode-map :package org ("C-c b" . #'org-cite-insert)))
