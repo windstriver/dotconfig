@@ -24,4 +24,14 @@ return {
   		},
   	},
   },
+
+  {
+    "folke/which-key.nvim"
+  },
+
+  {
+    "akinsho/bufferline.nvim",
+    enabled = false,
+  },
+
 }
