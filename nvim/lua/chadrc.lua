@@ -21,7 +21,7 @@ M.ui = {
     theme = "minimal",
   },
   tabufline = {
-    enabled = false,
+    enabled = true,
   }
 }
 

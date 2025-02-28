@@ -26,12 +26,10 @@ return {
   },
 
   {
-    "folke/which-key.nvim"
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    cmd = "Neogit",
   },
-
-  {
-    "akinsho/bufferline.nvim",
-    enabled = false,
-  },
-
 }
