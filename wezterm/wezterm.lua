@@ -10,8 +10,12 @@ return {
 
   -- Color Theme
   color_scheme = "Tokyo Night",
+  -- color_scheme = "Catppuccin Latte",
 
   -- 
   enable_wayland = false,
   front_end = "WebGpu",
+
+  -- window
+  window_decorations = "RESIZE",
 }

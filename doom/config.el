@@ -22,8 +22,8 @@
 ;; accept. For example:
 ;;
 (setq doom-font
-      (font-spec :family "Iosevka Nerd Font Mono" :size 38 :weight 'semi-light :ligatures t)
-      doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font Mono" :size 50))
+      (font-spec :family "Iosevka Nerd Font Mono" :size 20 :weight 'semi-light :ligatures t)
+      doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font Mono" :size 30))
 
 (custom-set-faces '(font-lock-comment-face ((t (:slant italic)))))
 ;;
@@ -110,14 +110,7 @@
   (setq denote-known-keywords '("emacs" "ai"))
   (setq denote-file-type 'org)
   (setq denote-prompts '(title keywords))
-
-  (add-hook 'dired-mode-hook #'denote-dired-mode)
-
-  (map! :leader
-        :desc "New denote note" "n n" #'denote
-        :desc "Find denote note" "n f" #'denote-find
-        :desc "Rename denote note" "n r" #'denote-rename-file))
-
+  (add-hook 'dired-mode-hook #'denote-dired-mode))
 
 ;; citar
 (use-package citar
