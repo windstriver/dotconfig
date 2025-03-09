@@ -1,0 +1,4 @@
+#+TITLE: My Personal Dotfile Configurations
+
+* Intro
+This Repo use Git and [[https://www.gnu.org/software/stow/][GNU Stow]] to manage most dotfile configurations.
