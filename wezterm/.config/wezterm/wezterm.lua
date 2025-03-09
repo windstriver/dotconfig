@@ -2,8 +2,8 @@ local wezterm = require 'wezterm'
 
 return {
   -- Font
-  font = wezterm.font 'Fira Code',
-  font_size = 12.0,
+  font = wezterm.font 'Iosevka',
+  font_size = 16.0,
 
   -- Tab Bar
   hide_tab_bar_if_only_one_tab = true,
@@ -14,7 +14,7 @@ return {
 
   -- 
   enable_wayland = false,
-  front_end = "WebGpu",
+  -- front_end = "WebGpu",
 
   -- window
   window_decorations = "RESIZE",

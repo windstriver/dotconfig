@@ -22,8 +22,8 @@
 ;; accept. For example:
 ;;
 (setq doom-font
-      (font-spec :family "Iosevka Nerd Font Mono" :size 20 :weight 'semi-light :ligatures t)
-      doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font Mono" :size 30))
+      (font-spec :family "Iosevka" :size 20 :weight 'semi-light :ligatures t)
+      doom-variable-pitch-font (font-spec :family "Iosevka" :size 30))
 
 (custom-set-faces '(font-lock-comment-face ((t (:slant italic)))))
 ;;
@@ -52,7 +52,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 ;;
-(setq pkm-directory "~/GitHub/pkm")
+(setq pkm-directory "~/Documents/GitHub/pkm")
 (setq org-directory (expand-file-name "org" pkm-directory))
 
 ;; doom-modeline
@@ -116,7 +116,7 @@
 (use-package citar
   :no-require
   :custom
-  (org-cite-global-bibliography '("~/GitHub/pkm/reference/main.bib"))
+  (org-cite-global-bibliography (expand-file-name "reference/main.bib" pkm-directory))
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
