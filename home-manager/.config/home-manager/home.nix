@@ -5,6 +5,7 @@
   # manage.
   home.username = "yong";
   home.homeDirectory = "/home/yong";
+  home.enableNixpkgsReleaseCheck = false;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -34,14 +35,16 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    pkgs.ghostty
     pkgs.stow
+    pkgs.fd
+    pkgs.ripgrep
+    pkgs.fzf
+    pkgs.nodejs_23
+    pkgs.aria2
+    pkgs.mpv
     pkgs.iosevka
     pkgs.noto-fonts-cjk-sans
-    # pkgs.lxgw-wenkai
-    pkgs.ripgrep
-    pkgs.fd
-    pkgs.fzf
-    pkgs.wezterm
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -80,7 +83,9 @@
   };
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs.home-manager = {
+    enable = true;
+  };
 
   # Git
   programs.git = {
@@ -99,4 +104,14 @@
     enable = true;
     package = pkgs.emacs-pgtk;
   };
+
+  # wofi
+  programs.wofi = {
+    enable = true;
+  };
+
+  programs.hyprlock = {
+    enable = true;
+  };
+
 }
