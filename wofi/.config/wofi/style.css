@@ -1,0 +1,33 @@
+* {
+    font-family: "JetBrainsMono Nerd Font", "monospace";
+    font-size: 14px;
+    background-color: rgba(20, 20, 20, 0.9);
+    color: #c0caf5; /* Tokyo Night foreground */
+}
+
+#window {
+    border: 2px solid #7aa2f7;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+#input {
+    background-color: rgba(30, 30, 46, 0.8);
+    color: #c0caf5;
+    border-radius: 8px;
+    border: none;
+    padding: 8px;
+}
+
+#entry {
+    background-color: rgba(24, 24, 37, 0.8);
+    color: #c0caf5;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+#entry:selected {
+    background-color: #7aa2f7;
+    color: #1a1b26;
+}
+

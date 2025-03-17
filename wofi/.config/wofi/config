@@ -1,0 +1,10 @@
+show=drun
+columns=2
+lines=10
+prompt=Run:
+allow_markup=true
+hide_scroll=true
+location=center
+width=600
+height=400
+
