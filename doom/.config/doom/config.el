@@ -21,9 +21,11 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
+(setq main-font "Maple Mono NF")
+;; (setq main-font "Iosevka")
 (setq doom-font
-      (font-spec :family "Iosevka" :size 20 :weight 'semi-light :ligatures t)
-      doom-variable-pitch-font (font-spec :family "Iosevka" :size 30))
+      (font-spec :family main-font :size 20 :weight 'semi-light :ligatures t)
+      doom-variable-pitch-font (font-spec :family main-font :size 30))
 
 (custom-set-faces '(font-lock-comment-face ((t (:slant italic)))))
 ;;
