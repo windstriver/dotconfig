@@ -54,7 +54,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 ;;
-(setq pkm-directory "~/Documents/GitHub/pkm")
+(setq pkm-directory "~/Documents/pkm")
 (setq org-directory (expand-file-name "org" pkm-directory))
 
 ;; doom-modeline
@@ -109,7 +109,7 @@
 (use-package! denote
   :config
   (setq denote-directory (expand-file-name "denote" pkm-directory))
-  (setq denote-known-keywords '("emacs" "ai"))
+  (setq denote-known-keywords '("emacs" "linux" "nix" "python"))
   (setq denote-file-type 'org)
   (setq denote-prompts '(title keywords))
   (add-hook 'dired-mode-hook #'denote-dired-mode))
