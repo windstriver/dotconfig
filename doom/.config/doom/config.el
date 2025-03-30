@@ -72,7 +72,6 @@
               (start-process "open-pdf" nil "xdg-open" buffer-file-name)
               (kill-buffer))))
 
-
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -105,6 +104,10 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(after! dired
+  (add-hook 'dired-mode-hook #'dired-hide-details-mode))
+(after! dirvish
+  (setq dirvish-hide-details t))
 ;; Denote
 (use-package! denote
   :config
