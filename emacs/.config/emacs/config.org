@@ -1,33 +1,61 @@
 #+TITLE: Emacs Configuration
 #+PROPERTY: header-args :tangle init.el
 
-* Basic settings
-
+* Basic
+** ui
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-startup-message t)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
-
-  (setq make-backup-files nil)
-  (setq custom-file (locate-user-emacs-file "custom-vars.el"))
+  (blink-cursor-mode -1)
+  (tooltip-mode -1)
 #+END_SRC
 
-* Theme
+** backup
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'modus-vivendi t)
+  (setq make-backup-files nil)
 #+END_SRC
 
-* Font
+** custom variables
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file (locate-user-emacs-file "custom-vars.el"))
+  (load custom-file 'noerror 'nomessage)
+#+END_SRC
+
+** font
 #+BEGIN_SRC emacs-lisp
   (set-face-attribute 'default nil
    		      :family "Maple Mono NF"
   		    :height 120)
 #+END_SRC
 
-* Dired
+** theme
 #+BEGIN_SRC emacs-lisp
-  ;;(add-hook 'dired-mode-hook #'dired-hide-details-mode)
+  (load-theme 'modus-vivendi t)
+
+  ;; Tokyo Night color override
+  (custom-set-faces
+    '(default ((t (:background "#1a1b26" :foreground "#c0caf5"))))
+    '(cursor ((t (:background "#c0caf5"))))
+    '(font-lock-keyword-face ((t (:foreground "#7aa2f7"))))
+    '(font-lock-function-name-face ((t (:foreground "#bb9af7"))))
+    '(font-lock-variable-name-face ((t (:foreground "#c0caf5"))))
+    '(font-lock-string-face ((t (:foreground "#9ece6a"))))
+    '(font-lock-comment-face ((t (:foreground "#565f89" :slant italic))))
+    '(font-lock-type-face ((t (:foreground "#2ac3de")))))
+#+END_SRC
+
+** modeline
+#+BEGIN_SRC emacs-lisp
+  (setq-default
+    mode-line-format
+      '(" "
+       (:eval (if (buffer-modified-p) "*" "-"))
+       " "
+       (:eval (propertize (buffer-name) 'face 'font-lock-keyword-face))
+       (:eval (propertize " " 'display '((space :align-to (- right 10)))))
+       (:eval (propertize mode-name 'face 'font-lock-function-name-face))))
 #+END_SRC
 
 * Packages
@@ -40,42 +68,48 @@ Initialize package sources.
   (package-initialize)
 #+END_SRC
 
-* Completion
-#+BEGINS_SRC emacs-lisp
-(use-package icomplete
-  :ensure nil
-  :init
-  (setq icomplete-separator "\n"
-	icomplete-hide-common-prefix nil
-	icomplete-prospects-height 10)
-  :config
-  (add-hook 'minibuffer-setup-hook #'icomplete-vertical-mode))
-
-(use-package completion-preview
-  :ensure nil
-  :hook (prog-mode . completion-preview-mode))
-#+END_SRC
-
-* Denote
+** completion
 #+BEGIN_SRC emacs-lisp
-(use-package denote
-  :ensure t
-  :config
-  (setq denote-directory "~/Documents/pkm/denote/")
-  (setq denote-file-type 'org))
+  (use-package icomplete
+    :ensure nil
+    :init
+    (setq icomplete-separator "\n"
+      icomplete-hide-common-prefix nil
+      icomplete-prospects-height 10)
+    :config
+    (add-hook 'minibuffer-setup-hook #'icomplete-vertical-mode))
+
+  (use-package completion-preview
+    :ensure nil
+    :hook (prog-mode . completion-preview-mode))
 #+END_SRC
 
-* Magit
+** smartparens
 #+BEGIN_SRC emacs-lisp
-(use-package magit
-  :ensure t)
+  (use-package smartparens
+    :ensure t
+    :hook (prog-mode)
+    :config
+    (require 'smartparens-config))
 #+END_SRC
 
-* smartparens
+** dired
 #+BEGIN_SRC emacs-lisp
-(use-package smartparens
-   :ensure t
-   :hook (prog-mode text-mode)
-   :config
-   (require 'smartparens-config))
+  (add-hook 'dired-mode-hook #'dired-hide-details-mode)
 #+END_SRC
+
+** denote
+#+BEGIN_SRC emacs-lisp
+  (use-package denote
+    :ensure t
+    :config
+    (setq denote-directory "~/Documents/pkm/denote/")
+    (setq denote-file-type 'org))
+#+END_SRC
+
+** magit
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t)
+#+END_SRC
+
