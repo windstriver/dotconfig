@@ -58,8 +58,13 @@
 (setq org-directory (expand-file-name "org" pkm-directory))
 
 ;; doom-modeline
-(setq doom-modeline-major-mode-icon t) ; show an icon for the major mode
-(setq doom-modeline-buffer-encoding t) ; show encoding type
+(after! doom-modeline
+  (setq doom-modeline-major-mode-icon t) ; show an icon for the major mode
+  (setq doom-modeline-major-mode-color-icon t)
+  (setq doom-modeline-buffer-encoding t) ; show encoding type
+  (setq doom-modeline-buffer-size nil))
+
+(setq minor-mode-alist nil)
 
 ;; pdf viewer
 (setq auto-mode-alist (rassq-delete-all 'doc-view-mode auto-mode-alist))

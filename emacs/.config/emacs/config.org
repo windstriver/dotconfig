@@ -1,0 +1,81 @@
+#+TITLE: Emacs Configuration
+#+PROPERTY: header-args :tangle init.el
+
+* Basic settings
+
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-message t)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+
+  (setq make-backup-files nil)
+  (setq custom-file (locate-user-emacs-file "custom-vars.el"))
+#+END_SRC
+
+* Theme
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'modus-vivendi t)
+#+END_SRC
+
+* Font
+#+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'default nil
+   		      :family "Maple Mono NF"
+  		    :height 120)
+#+END_SRC
+
+* Dired
+#+BEGIN_SRC emacs-lisp
+  ;;(add-hook 'dired-mode-hook #'dired-hide-details-mode)
+#+END_SRC
+
+* Packages
+Initialize package sources.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+  (package-initialize)
+#+END_SRC
+
+* Completion
+#+BEGINS_SRC emacs-lisp
+(use-package icomplete
+  :ensure nil
+  :init
+  (setq icomplete-separator "\n"
+	icomplete-hide-common-prefix nil
+	icomplete-prospects-height 10)
+  :config
+  (add-hook 'minibuffer-setup-hook #'icomplete-vertical-mode))
+
+(use-package completion-preview
+  :ensure nil
+  :hook (prog-mode . completion-preview-mode))
+#+END_SRC
+
+* Denote
+#+BEGIN_SRC emacs-lisp
+(use-package denote
+  :ensure t
+  :config
+  (setq denote-directory "~/Documents/pkm/denote/")
+  (setq denote-file-type 'org))
+#+END_SRC
+
+* Magit
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :ensure t)
+#+END_SRC
+
+* smartparens
+#+BEGIN_SRC emacs-lisp
+(use-package smartparens
+   :ensure t
+   :hook (prog-mode text-mode)
+   :config
+   (require 'smartparens-config))
+#+END_SRC
